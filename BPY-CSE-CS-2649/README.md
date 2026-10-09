@@ -1,113 +1,202 @@
 # Hybrid GAN-Assisted Credit Card Fraud Detection
 
-A complete academic Flask web application for comparing conventional fraud classifiers with a proposed Hybrid GAN-assisted oversampling model. It supports administrator-controlled ML training, single transaction detection with AI suggestions, and uploaded CSV graph analysis.
+This project is a Flask-based academic fraud detection system that compares traditional machine learning models with a proposed Hybrid GAN-assisted oversampling approach for credit card fraud classification.
 
-## Technology
+The application exposes a web interface for:
 
-- Python 3.10.11
-- Flask
+- admin dataset upload and preprocessing
+- feature ranking and model training
+- comparing model performance metrics
+- user-level single-transaction predictions
+- CSV batch fraud analysis with downloadable result files
+
+## Overview
+
+The system is designed for research and coursework use. It trains and compares several models on fraud data, including:
+
+- Logistic Regression
+- Decision Tree
+- Random Forest + SMOTE
+- Gradient Boosting + SMOTE
+- Proposed model: Hybrid GAN + Gradient Boosting
+
+It uses a MySQL database to store users, uploaded datasets, training results, and prediction history.
+
+## Tech stack
+
+- Python 3.10+
+- Flask 3
 - MySQL 8
-- PyMySQL only (no MySQLdb or SQLAlchemy)
-- TensorFlow/Keras dense GAN
-- scikit-learn, pandas, matplotlib and Chart.js
+- PyMySQL
+- pandas, numpy, scikit-learn
+- matplotlib
+- TensorFlow/Keras
+- joblib
+- python-dotenv
 
-## Main features
+## Project structure
 
-### Administrator
-
-1. Secure administrator login
-2. Upload and validate a CSV dataset
-3. Display records, columns, file size, fraud count and class distribution
-4. Preprocess data and show the 80%/20% stratified division
-5. Rank and select features using mutual information
-6. Train four existing methods:
-   - Logistic Regression
-   - Decision Tree
-   - Random Forest + SMOTE
-   - Gradient Boosting + SMOTE
-7. Train the proposed Hybrid GAN + Gradient Boosting method with a validation-selected fraud threshold
-8. Display accuracy, precision, recall, F1-score, ROC-AUC and confusion matrices
-9. Compare algorithms and calculate measured proposed-model betterment
-10. View registered users and their prediction history
-
-### User
-
-1. Register, log in and open dashboard
-2. Enter one transaction manually
-3. View existing result, proposed result, risk, confidence and fraud probability
-4. Receive rule-grounded AI security suggestions
-5. Upload a CSV with up to 10,000 transactions
-6. View fraud distribution, risk-level, probability and model comparison graphs
-7. Read an automatic file-level security summary
-8. Download the row-by-row prediction CSV
-9. Review personal prediction history
-
-## Windows setup
-
-### 1. Requirements
-
-- Install Python 3.10.11 and select **Add Python to PATH**.
-- Install and start MySQL Server 8.
-
-### 2. Automatic setup
-
-Double-click `install_windows.bat`. It creates a virtual environment, installs packages, creates `.env`, and regenerates sample datasets.
-
-If your MySQL root user has a password, open `.env` and set:
-
-```env
-DB_USER=root
-DB_PASSWORD=your_mysql_password
+```text
+BPY-CSE-CS-2649/
+├── app/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── advisor.py
+│   ├── auth.py
+│   ├── db.py
+│   ├── decorators.py
+│   ├── ml_engine.py
+│   ├── user.py
+│   ├── static/
+│   └── templates/
+├── model_artifacts/
+├── sample_data/
+├── uploads/
+├── config.py
+├── generate_dataset.py
+├── install_windows.bat
+├── README.md
+├── requirements.txt
+├── run.py
+├── run_windows.bat
+├── schema.sql
+├── VALIDATED_METRICS.md
+└── .env
 ```
 
-### 3. Start the application
+## Key functionality
 
-Activate the environment and run:
+### Administrator features
 
-```bat
+- secure admin login
+- upload and validate CSV datasets
+- inspect dataset statistics and class distribution
+- review preprocessing details and feature rankings
+- train classical and GAN-assisted fraud models
+- compare trained models using accuracy, precision, recall, F1-score, ROC-AUC, and confusion matrices
+- view users and prediction history
+
+### User features
+
+- registration and login
+- manual single-transaction prediction
+- fraud probability and confidence scores
+- AI-generated risk suggestions
+- batch CSV upload for up to 10,000 transactions
+- risk distribution charts and summary narrative
+- downloadable prediction results
+- personal prediction history
+
+## Database and configuration
+
+The app reads its configuration from `config.py` and optional environment variables via `.env`.
+
+Default settings include:
+
+- DB host: `localhost`
+- DB port: `3306`
+- DB user: `root`
+- DB password: `root`
+- DB name: `credit_fraud_gan`
+
+For local setup, create or update `.env` with values such as:
+
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_NAME=credit_fraud_gan
+SECRET_KEY=your-secret-key
+```
+
+## Setup
+
+### Prerequisites
+
+- Python 3.10+
+- MySQL 8 installed and running
+- virtual environment support
+
+### Windows quick start
+
+1. Open PowerShell in the project directory.
+2. Create a virtual environment:
+
+```powershell
+python -m venv venv
 venv\Scripts\activate
+```
+
+3. Install dependencies:
+
+```powershell
+pip install -r requirements.txt
+```
+
+4. Create or update `.env` with your MySQL credentials.
+5. Start the app:
+
+```powershell
 python run.py
 ```
 
-Open <http://127.0.0.1:5000>.
+6. Open:
 
-The application automatically creates the database, all tables and the default administrator account. You may alternatively execute `schema.sql` in MySQL Workbench or phpMyAdmin.
+```text
+http://127.0.0.1:5000
+```
 
-## Administrator login
+The app initializes the database and creates the default admin account automatically when it starts.
+
+### Automated Windows setup
+
+You can also use the bundled setup scripts:
+
+```powershell
+install_windows.bat
+run_windows.bat
+```
+
+## Default admin account
 
 - Email: `admin@fraudshield.ai`
 - Password: `admin123`
 
-## First-use workflow
+## First-run workflow
 
-1. Sign in as administrator.
-2. Open **Dataset** and upload `sample_data/credit_card_training.csv`.
-3. Review **Preprocessing** and **Feature Selection**.
-4. Open **Model Training** and click **Train all algorithms**.
-5. Register a normal user or log out and create one.
-6. Use **Single Detection** or upload `sample_data/test_transactions.csv` in **File Analysis**.
+1. Sign in as the administrator.
+2. Upload `sample_data/credit_card_training.csv` from the admin dataset page.
+3. Review preprocessing and feature-ranking results.
+4. Train the models from the training panel.
+5. Register a standard user account.
+6. Use either single prediction or batch CSV analysis to evaluate new transactions.
 
-The included 5,000-record academic dataset contains a rare fraud class with clearly
-learnable behavioural differences. On the fixed 80/20 validation split, every included
-existing algorithm is expected to exceed 90% measured accuracy, while the proposed model
-is designed to exceed 95%. Results are always calculated by the application and are never
-hardcoded; results for a different uploaded dataset will naturally vary.
+## Dataset notes
 
-See `VALIDATED_METRICS.md` for the complete measured accuracy, precision, recall,
-F1-score and ROC-AUC values obtained with the included dataset.
+The included sample dataset contains numeric features and a binary target column named `Class`. For custom datasets, the application accepts target columns such as:
 
-## Dataset format
+- `Class`
+- `is_fraud`
+- `fraud`
+- `target`
+- `label`
 
-The included data contains 12 numeric features and a binary `Class` target. The application also accepts public PCA-style credit-card datasets, provided their target column is named `Class`, `is_fraud`, `fraud`, `target`, or `label`.
+Batch prediction files without a target column are also supported.
 
-For batch testing, the target column is not required. Missing feature columns are filled using training medians, although using the same feature columns as training is strongly recommended.
+## Metrics and model behavior
 
-## GAN fallback
+Model metrics are evaluated on the untouched validation/test split. Results are computed by the application at runtime rather than being hardcoded.
 
-With TensorFlow installed, training uses the included dense GAN. On a low-resource system where TensorFlow cannot load, the project stays runnable using a clearly labelled lightweight statistical generation fallback. The interface always displays which backend was actually used; it does not fabricate model metrics.
+See [VALIDATED_METRICS.md](VALIDATED_METRICS.md) for the benchmark values obtained on the included dataset.
 
 ## Notes
 
-- Training metrics are computed from the untouched 20% test subset.
-- The database column is named `precision_score`, avoiding MySQL keyword/parser conflicts.
-- This is an educational decision-support project, not a replacement for a bank's production fraud controls.
+- This project is intended as an educational decision-support system.
+- It is not a production-grade banking fraud control system.
+- The app supports a TensorFlow GAN backend when available and falls back to a lightweight statistical generation path if needed.
+- The database schema is created automatically by the app on startup.
+
+## License
+
+This repository does not include a formal license file. Please confirm with the project owner or academic institution before reusing it outside the intended course or research context.
