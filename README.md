@@ -10,7 +10,7 @@ The application exposes a web interface for:
 - user-level single-transaction predictions
 - CSV batch fraud analysis with downloadable result files
 
-## Overview
+# Overview
 
 The system is designed for research and coursework use. It trains and compares several models on fraud data, including:
 
