@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% block title %}Sign In | FraudShield{% endblock %}{% block content %}
+<div class="auth-page"><div class="auth-panel visual-panel"><a class="brand" href="/"><span class="brand-mark"><i class="bi bi-shield-check"></i></span><span>FraudShield<small>Hybrid GAN Intelligence</small></span></a><div><span class="tag">SECURE ACCESS</span><h1>Welcome back to intelligent fraud defense.</h1><p>Analyze individual transactions or thousands of records with explainable risk guidance.</p></div><small>Academic AI Project • Privacy-aware design</small></div>
+<div class="auth-panel form-panel"><form method="post" class="auth-form"><span class="eyebrow">ACCOUNT ACCESS</span><h2>Sign in</h2><p>Enter your registered account details.</p>
+  <label>Email address<input type="email" name="email" placeholder="you@example.com" required></label>
+  <label>Password<input type="password" name="password" placeholder="Minimum 6 characters" required></label>
+  <button class="btn btn-primary btn-block" type="submit">Sign in <i class="bi bi-arrow-right"></i></button>
+  <div class="demo-box"><strong>Administrator demo</strong><code>admin@fraudshield.ai</code><code>admin123</code></div>
+  <p class="form-foot">New user? <a href="{{ url_for('auth.register') }}">Create an account</a></p>
+</form></div></div>
+{% endblock %}
+

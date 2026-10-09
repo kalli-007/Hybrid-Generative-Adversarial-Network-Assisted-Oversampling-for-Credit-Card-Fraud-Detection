@@ -1,0 +1,26 @@
+{% extends 'base.html' %}{% block title %}FraudShield GAN | Intelligent Fraud Detection{% endblock %}
+{% block content %}
+<div class="landing">
+  <nav class="landing-nav"><a class="brand" href="/"><span class="brand-mark"><i class="bi bi-shield-check"></i></span><span>FraudShield<small>Hybrid GAN Intelligence</small></span></a>
+    <div><a class="text-link" href="{{ url_for('auth.login') }}">Sign in</a><a class="btn btn-primary" href="{{ url_for('auth.register') }}">Create account</a></div></nav>
+  <section class="hero">
+    <div class="hero-copy"><span class="tag"><i class="bi bi-stars"></i> GENERATIVE AI FOR FINANCIAL SECURITY</span>
+      <h1>Detect fraud before it becomes a <em>financial loss.</em></h1>
+      <p>Hybrid GAN-assisted oversampling learns rare fraud behaviour and improves detection in highly imbalanced credit-card transaction data.</p>
+      <div class="hero-actions"><a class="btn btn-primary btn-lg" href="{{ url_for('auth.login') }}">Launch detection <i class="bi bi-arrow-right"></i></a><a class="btn btn-ghost btn-lg" href="#workflow">Explore workflow</a></div>
+      <div class="trust-row"><span><i class="bi bi-check-circle-fill"></i> Existing vs proposed results</span><span><i class="bi bi-check-circle-fill"></i> AI recommendations</span><span><i class="bi bi-check-circle-fill"></i> Batch graph analysis</span></div>
+    </div>
+    <div class="hero-visual">
+      <div class="glow"></div><div class="security-card"><div class="scan-line"></div><i class="bi bi-credit-card-2-front"></i><span>SECURE TRANSACTION</span><strong>•••• 4821</strong></div>
+      <div class="floating-card fc-one"><span class="icon success"><i class="bi bi-shield-check"></i></span><div><small>Detection confidence</small><strong>98.7%</strong></div></div>
+      <div class="floating-card fc-two"><span class="icon danger"><i class="bi bi-exclamation-triangle"></i></span><div><small>Threat isolated</small><strong>Critical risk</strong></div></div>
+    </div>
+  </section>
+  <section id="workflow" class="landing-features">
+    <article><span>01</span><i class="bi bi-database"></i><h3>Balance rare fraud</h3><p>A dense GAN learns minority-class patterns and creates realistic synthetic fraud samples.</p></article>
+    <article><span>02</span><i class="bi bi-diagram-3"></i><h3>Compare five models</h3><p>Evaluate existing classifiers against the proposed Hybrid GAN model using complete metrics.</p></article>
+    <article><span>03</span><i class="bi bi-graph-up-arrow"></i><h3>Act on intelligence</h3><p>Receive risk levels, AI suggestions, batch summaries, graphs and downloadable reports.</p></article>
+  </section>
+</div>
+{% endblock %}
+

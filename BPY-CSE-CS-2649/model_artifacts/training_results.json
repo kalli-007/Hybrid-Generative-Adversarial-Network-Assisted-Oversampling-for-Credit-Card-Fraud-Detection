@@ -1,0 +1,107 @@
+[
+  {
+    "algorithm": "Logistic Regression",
+    "method_type": "Existing",
+    "backend": "scikit-learn",
+    "confusion_image": "logistic_regression.png",
+    "accuracy": 0.994,
+    "precision": 0.921875,
+    "recall": 0.9833333333333333,
+    "f1": 0.9516129032258065,
+    "roc_auc": 0.9850354609929077,
+    "confusion": [
+      [
+        935,
+        5
+      ],
+      [
+        1,
+        59
+      ]
+    ]
+  },
+  {
+    "algorithm": "Decision Tree",
+    "method_type": "Existing",
+    "backend": "scikit-learn",
+    "confusion_image": "decision_tree.png",
+    "accuracy": 0.991,
+    "precision": 0.9180327868852459,
+    "recall": 0.9333333333333333,
+    "f1": 0.9256198347107438,
+    "roc_auc": 0.9608510638297872,
+    "confusion": [
+      [
+        935,
+        5
+      ],
+      [
+        4,
+        56
+      ]
+    ]
+  },
+  {
+    "algorithm": "Random Forest + SMOTE",
+    "method_type": "Existing",
+    "backend": "scikit-learn",
+    "confusion_image": "random_forest_plus_smote.png",
+    "accuracy": 0.999,
+    "precision": 1.0,
+    "recall": 0.9833333333333333,
+    "f1": 0.9915966386554622,
+    "roc_auc": 0.9962322695035462,
+    "confusion": [
+      [
+        940,
+        0
+      ],
+      [
+        1,
+        59
+      ]
+    ]
+  },
+  {
+    "algorithm": "Gradient Boosting + SMOTE",
+    "method_type": "Existing",
+    "backend": "scikit-learn",
+    "confusion_image": "gradient_boosting_plus_smote.png",
+    "accuracy": 0.997,
+    "precision": 0.9672131147540983,
+    "recall": 0.9833333333333333,
+    "f1": 0.9752066115702479,
+    "roc_auc": 0.9889893617021276,
+    "confusion": [
+      [
+        938,
+        2
+      ],
+      [
+        1,
+        59
+      ]
+    ]
+  },
+  {
+    "algorithm": "Hybrid GAN + Gradient Boosting",
+    "method_type": "Proposed",
+    "backend": "Lightweight GAN-compatible fallback",
+    "confusion_image": "hybrid_gan_plus_gradient_boosting.png",
+    "accuracy": 0.999,
+    "precision": 1.0,
+    "recall": 0.9833333333333333,
+    "f1": 0.9915966386554622,
+    "roc_auc": 0.9877925531914893,
+    "confusion": [
+      [
+        940,
+        0
+      ],
+      [
+        1,
+        59
+      ]
+    ]
+  }
+]

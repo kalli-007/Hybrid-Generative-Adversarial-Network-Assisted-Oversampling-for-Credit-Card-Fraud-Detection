@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block title %}Single Transaction Detection{% endblock %}{% block content %}
+<div class="page-heading"><div><span class="eyebrow">SINGLE INPUT</span><h1>Transaction risk detection</h1><p>Enter transaction behaviour details for an instant existing and proposed model result.</p></div></div>
+<form method="post" class="card prediction-form"><div class="form-section-head"><span>01</span><div><h2>Transaction information</h2><p>Use numeric values; binary fields accept 0 for No and 1 for Yes.</p></div></div><div class="form-grid">
+{% set labels={'Time':'Time in seconds','Amount':'Transaction amount (₹)','MerchantRisk':'Merchant risk score (0–1)','DistanceFromHome':'Distance from home (km)','DistanceFromLastTransaction':'Distance from last transaction (km)','RatioToMedianPurchase':'Purchase / median ratio','RepeatRetailer':'Repeat retailer? (0/1)','UsedChip':'Chip used? (0/1)','UsedPinNumber':'PIN used? (0/1)','OnlineOrder':'Online order? (0/1)','ForeignTransaction':'Foreign transaction? (0/1)','TransactionsLast24h':'Transactions in last 24h'} %}
+{% set defaults={'Time':'45200','Amount':'3250','MerchantRisk':'0.25','DistanceFromHome':'8.5','DistanceFromLastTransaction':'2.1','RatioToMedianPurchase':'1.3','RepeatRetailer':'1','UsedChip':'1','UsedPinNumber':'1','OnlineOrder':'0','ForeignTransaction':'0','TransactionsLast24h':'3'} %}
+{% for f in features %}<label>{{ labels[f] }}<input type="number" step="any" name="{{ f }}" value="{{ defaults[f] }}" required></label>{% endfor %}</div><div class="form-actions"><button type="reset" class="btn btn-ghost">Reset fields</button><button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-stars"></i> Generate AI fraud result</button></div></form>
+{% endblock %}
+
